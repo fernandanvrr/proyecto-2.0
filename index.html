@@ -1,199 +1,189 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Una página sencilla para practicar despliegues con GitHub y Railway.">
-  <title>welcome to my proyect</title>
-
-  <style>
-    :root {
-      --fondo: #f5f3ff;
-      --tarjeta: rgba(255, 255, 255, 0.88);
-      --texto: #24213a;
-      --suave: #69657d;
-      --morado: #6d4aff;
-      --celeste: #37b9da;
-      --borde: rgba(109, 74, 255, 0.14);
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      min-height: 100vh;
-      margin: 0;
-      display: grid;
-      place-items: center;
-      padding: 24px;
-      overflow-x: hidden;
-      color: var(--texto);
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background:
-        radial-gradient(circle at 10% 10%, rgba(55, 185, 218, 0.25), transparent 30%),
-        radial-gradient(circle at 90% 90%, rgba(109, 74, 255, 0.25), transparent 30%),
-        var(--fondo);
-    }
-
-    .decoracion {
-      position: fixed;
-      width: 230px;
-      height: 230px;
-      border-radius: 50%;
-      filter: blur(2px);
-      opacity: 0.45;
-      pointer-events: none;
-    }
-
-    .decoracion.uno {
-      top: -95px;
-      right: -70px;
-      background: linear-gradient(135deg, var(--morado), #b5a4ff);
-    }
-
-    .decoracion.dos {
-      bottom: -120px;
-      left: -70px;
-      background: linear-gradient(135deg, var(--celeste), #b7eff8);
-    }
-
-    main {
-      width: min(100%, 780px);
-      padding: clamp(32px, 7vw, 70px);
-      text-align: center;
-      border: 1px solid var(--borde);
-      border-radius: 30px;
-      background: var(--tarjeta);
-      box-shadow: 0 24px 70px rgba(50, 39, 110, 0.14);
-      backdrop-filter: blur(12px);
-      animation: aparecer 700ms ease-out both;
-    }
-
-    .etiqueta {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 20px;
-      padding: 8px 14px;
-      color: var(--morado);
-      font-size: 0.82rem;
-      font-weight: 750;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      border: 1px solid var(--borde);
-      border-radius: 999px;
-      background: #f8f6ff;
-    }
-
-    .punto {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: #2acb91;
-      box-shadow: 0 0 0 4px rgba(42, 203, 145, 0.16);
-    }
-
-    h1 {
-      margin: 0;
-      font-size: clamp(2.6rem, 9vw, 5.7rem);
-      line-height: 0.95;
-      letter-spacing: -0.065em;
-    }
-
-    h1 span {
-      color: transparent;
-      background: linear-gradient(110deg, var(--morado), var(--celeste));
-      background-clip: text;
-      -webkit-background-clip: text;
-    }
-
-    .descripcion {
-      max-width: 560px;
-      margin: 24px auto 30px;
-      color: var(--suave);
-      font-size: clamp(1rem, 2.5vw, 1.18rem);
-      line-height: 1.7;
-    }
-
-    button {
-      padding: 14px 22px;
-      color: white;
-      font: inherit;
-      font-weight: 750;
-      border: 0;
-      border-radius: 14px;
-      background: linear-gradient(110deg, var(--morado), #856bff);
-      box-shadow: 0 12px 24px rgba(109, 74, 255, 0.25);
-      cursor: pointer;
-      transition: transform 180ms ease, box-shadow 180ms ease;
-    }
-
-    button:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 16px 28px rgba(109, 74, 255, 0.32);
-    }
-
-    button:active {
-      transform: translateY(0);
-    }
-
-    #mensaje {
-      min-height: 24px;
-      margin: 18px 0 0;
-      color: var(--morado);
-      font-weight: 700;
-    }
-
-    footer {
-      margin-top: 32px;
-      color: #928ea3;
-      font-size: 0.86rem;
-    }
-
-    @keyframes aparecer {
-      from { opacity: 0; transform: translateY(18px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      main { animation: none; }
-      button { transition: none; }
-    }
-  </style>
+  <meta name="description" content="Buscador y comparador de ofertas para Chile.">
+  <title>OfertaRadar CL</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=DM+Serif+Display&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-  <div class="decoracion uno" aria-hidden="true"></div>
-  <div class="decoracion dos" aria-hidden="true"></div>
+  <div class="blob blob--one"></div>
+  <div class="blob blob--two"></div>
+
+  <header class="header">
+    <div class="container nav">
+      <a href="#" class="brand">
+        <span class="brand__icon">%</span>
+        <span>OfertaRadar <b>CL</b></span>
+      </a>
+      <div class="nav__actions">
+        <button id="favoritesNavBtn" class="nav-btn">♡ <span id="favoriteCount">0</span></button>
+        <button id="themeBtn" class="nav-btn" aria-label="Cambiar tema">☀️</button>
+      </div>
+    </div>
+  </header>
 
   <main>
-    <div class="etiqueta">
-      <span class="punto"></span>
-      Sitio publicado
-    </div>
+    <section class="hero container">
+      <div class="hero__copy">
+        <span class="eyebrow">BUSCA · COMPARA · AHORRA</span>
+        <h1>Encuentra una mejor <em>oferta.</em></h1>
+        <p>
+          Busca productos, filtra descuentos y compara opciones desde una sola pantalla.
+          Esta primera versión incluye un catálogo demostrativo y accesos a tiendas.
+        </p>
+      </div>
 
-    <h1>welcome to my <span>web</span></h1>
+      <div class="hero__stat">
+        <span>Mejor descuento del catálogo</span>
+        <strong id="heroDiscount">—</strong>
+        <small>catálogo de demostración</small>
+      </div>
+    </section>
 
-    <p class="descripcion">
-      Una página sencilla, bonita y adaptable a celulares para practicar
-      cómo subir un proyecto a GitHub y publicarlo en Railway.
-    </p>
+    <section class="search-shell container">
+      <div class="search-box">
+        <span class="search-icon">⌕</span>
+        <input id="searchInput" type="search" autocomplete="off" placeholder="¿Qué producto estás buscando? Ej: notebook, audífonos, mochila…">
+        <button id="searchBtn" class="primary-btn">Buscar ofertas</button>
+      </div>
 
-    <button id="boton" type="button">Probar la página</button>
-    <p id="mensaje" aria-live="polite"></p>
+      <div class="quick-searches">
+        <span>Prueba:</span>
+        <button data-query="notebook">Notebook</button>
+        <button data-query="audífonos">Audífonos</button>
+        <button data-query="mochila">Mochila</button>
+        <button data-query="impresora">Impresora</button>
+        <button data-query="zapatillas">Zapatillas</button>
+      </div>
+    </section>
 
-    <footer>Hecho con HTML, CSS y un poquito de JavaScript ✦</footer>
+    <section class="container external-search" id="externalSearch">
+      <div>
+        <span class="eyebrow">BUSCAR EN TIENDAS</span>
+        <h2>Repite tu búsqueda directamente</h2>
+      </div>
+      <div id="storeButtons" class="store-buttons"></div>
+    </section>
+
+    <section class="container content-grid">
+      <aside class="filters card">
+        <div class="filters__header">
+          <div>
+            <span class="eyebrow">FILTROS</span>
+            <h2>Afina la búsqueda</h2>
+          </div>
+          <button id="clearFiltersBtn" class="text-btn">Limpiar</button>
+        </div>
+
+        <label class="filter-label" for="categoryFilter">Categoría</label>
+        <select id="categoryFilter">
+          <option value="all">Todas</option>
+        </select>
+
+        <label class="filter-label" for="maxPriceFilter">Precio máximo</label>
+        <select id="maxPriceFilter">
+          <option value="0">Sin límite</option>
+          <option value="20000">$20.000</option>
+          <option value="50000">$50.000</option>
+          <option value="100000">$100.000</option>
+          <option value="250000">$250.000</option>
+          <option value="500000">$500.000</option>
+          <option value="1000000">$1.000.000</option>
+        </select>
+
+        <label class="filter-label" for="discountFilter">Descuento mínimo</label>
+        <div class="range-row">
+          <input id="discountFilter" type="range" min="0" max="70" step="5" value="0">
+          <strong id="discountValue">0%</strong>
+        </div>
+
+        <label class="filter-label" for="storeFilter">Tienda</label>
+        <select id="storeFilter">
+          <option value="all">Todas</option>
+        </select>
+
+        <label class="check-row">
+          <input id="favoriteOnlyFilter" type="checkbox">
+          <span>Mostrar solo favoritos</span>
+        </label>
+
+        <div class="filter-note">
+          <strong>Importante</strong>
+          <p>Los productos incluidos son de demostración. Confirma el precio final en la tienda antes de comprar.</p>
+        </div>
+      </aside>
+
+      <section class="results">
+        <div class="results__top">
+          <div>
+            <span class="eyebrow">RESULTADOS</span>
+            <h2 id="resultsTitle">Ofertas destacadas</h2>
+            <p id="resultsSummary"></p>
+          </div>
+          <select id="sortSelect" class="sort-select">
+            <option value="discount">Mayor descuento</option>
+            <option value="priceAsc">Menor precio</option>
+            <option value="priceDesc">Mayor precio</option>
+            <option value="saving">Mayor ahorro</option>
+            <option value="name">Nombre A–Z</option>
+          </select>
+        </div>
+
+        <div id="offerGrid" class="offer-grid"></div>
+
+        <div id="emptyState" class="empty-state hidden">
+          <div>⌕</div>
+          <h3>No encontré coincidencias</h3>
+          <p>Prueba una búsqueda más general o quita alguno de los filtros.</p>
+        </div>
+      </section>
+    </section>
+
+    <section class="container compare-section card">
+      <div class="compare-section__header">
+        <div>
+          <span class="eyebrow">COMPARADOR</span>
+          <h2>Compara hasta 3 ofertas</h2>
+        </div>
+        <button id="clearCompareBtn" class="text-btn">Vaciar</button>
+      </div>
+      <div id="compareArea" class="compare-area">
+        <p class="compare-empty">Selecciona “Comparar” en alguna tarjeta para agregarla aquí.</p>
+      </div>
+    </section>
+
+    <section class="container data-section card">
+      <div>
+        <span class="eyebrow">TU CATÁLOGO</span>
+        <h2>¿Quieres usar tus propias ofertas?</h2>
+        <p>
+          Puedes exportar el catálogo como JSON, editarlo y volver a importarlo.
+          Así esta versión sigue funcionando sin servidor.
+        </p>
+      </div>
+      <div class="data-actions">
+        <button id="exportBtn" class="secondary-btn">↓ Exportar JSON</button>
+        <label class="secondary-btn file-label">
+          ↑ Importar JSON
+          <input id="importInput" type="file" accept=".json,application/json">
+        </label>
+        <button id="restoreBtn" class="secondary-btn">↺ Restaurar demo</button>
+      </div>
+      <div id="dataFeedback" class="data-feedback"></div>
+    </section>
   </main>
 
-  <script>
-    const boton = document.querySelector("#boton");
-    const mensaje = document.querySelector("#mensaje");
+  <footer class="footer container">
+    <strong>OfertaRadar CL</strong>
+    <span>Prototipo local de buscador y comparador de ofertas.</span>
+  </footer>
 
-    boton.addEventListener("click", () => {
-      mensaje.textContent = "¡Funciona! Tu página ya está lista para publicar 🚀";
-      boton.textContent = "¡Todo listo!";
-    });
-  </script>
+  <script src="data.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
